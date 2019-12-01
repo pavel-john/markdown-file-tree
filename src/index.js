@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import path from 'path';
 import { initConfig, getConfig } from './config';
 import * as FSUtils from './fsUtils';
