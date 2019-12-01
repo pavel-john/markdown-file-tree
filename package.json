@@ -1,6 +1,6 @@
 {
   "name": "markdown-file-tree",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Generate file-tree in markdown, e.g. (`_Sidebar.md`) for Github wiki, including links to files.",
   "main": "dist/index.js",
   "repository": {
@@ -15,7 +15,7 @@
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [ 
+  "keywords": [
     "markdown",
     "menu",
     "github",
@@ -29,7 +29,10 @@
     "email": "info@paveljohn.com",
     "url": "https://www.paveljohn.com/"
   },
-  "license": "ISC",
+  "license": "MIT",
+  "bin": {
+    "markdown-file-tree": "dist/index.js"
+  },
   "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
