@@ -6,8 +6,8 @@ export const readfilePromise = filePath => new Promise(
     (error, data) => (error ? reject(error) : resolve(data))),
 );
 
-export const readdirPromise = dirPAth => new Promise(
-  (resolve, reject) => fs.readdir(dirPAth,
+export const readdirPromise = dirPath => new Promise(
+  (resolve, reject) => fs.readdir(dirPath,
     (error, files) => (error ? reject(error) : resolve(files))),
 );
 
@@ -31,3 +31,7 @@ export const trimExtension = fileName => {
 export const resolveHome = filepath => (filepath[0] === '~')
   ? path.join(process.env.HOME, filepath.slice(1))
   : filepath;
+
+export const existsPromise = filePath => new Promise(resolve => {
+  fs.exists(filePath, exists => resolve(exists));
+});

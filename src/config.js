@@ -8,7 +8,7 @@ const parseValidRegexArray = value => {
 };
 
 const parseValidNonnegativeInteger = value => {
-  if (!Number.isInteger(value) || value >= 0) {
+  if (!Number.isInteger(value) || value < 0) {
     throw new Error('Is not an integer >= 0.');
   }
   return value;
@@ -82,14 +82,16 @@ const config = {};
 
 export const initConfig = async configPath => {
   try {
-    const file = await FSUtils.readfilePromise(configPath);
-    const userConfig = JSON.parse(file);
+    const configExists = await FSUtils.existsPromise(configPath);
+    const userConfig = configExists
+      ? JSON.parse(await FSUtils.readfilePromise(configPath))
+      : {};
 
     Object.keys(configSchema).forEach(key => {
       const userValue = userConfig[key];
       const schema = configSchema[key];
       if (typeof (userValue) === 'undefined') {
-        config[key] = schema.default;
+        config[key] = schema.parse(schema.default);
       } else {
         try {
           config[key] = schema.parse(userValue);
