@@ -1,0 +1,100 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "require-atomic-updates": [
+      "warn"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-var": "error",
+    "prefer-arrow-callback": "warn",
+    "no-unused-vars": "warn",
+    "no-warning-comments": "warn",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": [
+      "warn",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "keyword-spacing": [
+      "error"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-trailing-spaces": "error",
+    "prefer-const": "warn",
+    "operator-linebreak": [
+      "error",
+      "after",
+      {
+        "overrides": {
+          "?": "before",
+          ":": "before",
+          "===": "ignore"
+        }
+      }
+    ],
+    "arrow-parens": [
+      "warn",
+      "as-needed"
+    ],
+    "consistent-return": "error",
+    "import/no-default-export": "warn",
+    "import/named": "warn",
+    "import/default": "warn",
+    "import/namespace": "warn",
+    "import/no-absolute-path": "warn",
+    "import/no-self-import": "warn",
+    "import/no-useless-path-segments": "warn",
+    "import/no-unused-modules": "warn",
+    "import/no-deprecated": "warn",
+    "import/first": "warn",
+    "import/no-duplicates": "warn",
+    "import/order": "warn",
+    "import/newline-after-import": "warn",
+    "import/no-unresolved": "warn"
+  }
+}

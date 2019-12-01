@@ -1,0 +1,21 @@
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables files
+*.env
+
+# Builds
+dist/
+
+# Merge backups
+*.orig
+
+# IDE
+.vscode/
+
+# Temporary files
+*.tmp
