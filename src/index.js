@@ -8,12 +8,19 @@ const buildFormatFile = (linkPrefix, treeOffset) => fileName => {
   return `${treeOffset}  - [${trimmedFileName}](${linkPrefix}/${trimmedFileName})\n`;
 };
 
+const formatRoot = (hasRootMd, treeOffset, depth, rootName, linkPrefix) => {
+  const rootBullet = depth > 0 ? '- ' : '';
+  const fileName = depth === 0
+    ? FSUtils.trimExtension(getConfig('rootFileName'))
+    : rootName;
+  return (hasRootMd)
+    ? `${treeOffset}${rootBullet}[${rootName}](${linkPrefix}/${fileName})\n`
+    : `${treeOffset}${rootBullet}${rootName}\n`;
+};
+
 const formatTree = (tree, linkPrefix, depth) => {
   const treeOffset = ' '.repeat(depth * 2);
-  const rootBullet = depth > 0 ? '- ' : '';
-  let string = (tree.rootMd)
-    ? `${treeOffset}${rootBullet}[${tree.rootName}](${linkPrefix}/${getConfig('rootFileName')})\n`
-    : `${treeOffset}${rootBullet}${tree.rootName}\n`;
+  let string = formatRoot(tree.hasRootMd, treeOffset, depth, tree.rootName, linkPrefix);
 
   if (tree.childDirs.length > 0) {
     string = string.concat(tree.childDirs.join(''));
@@ -35,7 +42,7 @@ const mdFileTree = async (dirPath, linkPrefix, depth = 0) => {
   const tree = {
     rootName: path.basename(dirPath),
     rootPath: path.resolve(dirPath),
-    rootMd: false,
+    hasRootMd: false,
     childDirs: [],
     childFiles: [],
   };
@@ -48,27 +55,30 @@ const mdFileTree = async (dirPath, linkPrefix, depth = 0) => {
     }
     const childStats = await FSUtils.statPromise(childPath);
     if (childStats.isDirectory()) {
-      const childLinkPrefix = `${linkPrefix}/${child}`;
+      const childLinkPrefix = `${linkPrefix}`;
       const childDir = await mdFileTree(childPath, childLinkPrefix, depth + 1);
       if (childDir !== null) {
         tree.childDirs.push(childDir);
       }
-    } else if (getConfig('rootFileName') === child) {
-      tree.rootMd = true;
+    } else if (
+      depth === 0 && getConfig('rootFileName') === child ||
+      tree.rootName === FSUtils.trimExtension(child)
+    ) {
+      tree.hasRootMd = true;
     } else if (getConfig('include').some(include => include.test(child))) {
       tree.childFiles.push(child);
     }
     return;
   }));
 
-  return (tree.rootMd || tree.childDirs.length + tree.childFiles.length > 0)
+  return (tree.hasRootMd || tree.childDirs.length + tree.childFiles.length > 0)
     ? formatTree(tree, linkPrefix, depth)
     : null;
 };
 
 const run = async configPath => {
   try {
-    await initConfig(configPath ||  '.mftrc.json');
+    await initConfig(configPath || '.mftrc.json');
     const dirPath = path.resolve(FSUtils.resolveHome(getConfig('source')));
     const tree = await mdFileTree(dirPath, getConfig('linkPrefix'));
     const outputPath = path.resolve(FSUtils.resolveHome(getConfig('output')));
