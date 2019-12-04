@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 import path from 'path';
+import ReactDOMServer from 'react-dom/server';
 import { initConfig, getConfig } from './config';
 import * as FSUtils from './fsUtils';
+
+import DirectoryTree from './components/DirectoryTree';
 
 const buildFormatFile = (linkPrefix, treeOffset) => fileName => {
   const trimmedFileName = getConfig('trimExtension') ? FSUtils.trimExtension(fileName) : fileName;
@@ -79,8 +82,9 @@ const mdFileTree = async (dirPath, linkPrefix, depth = 0) => {
 const run = async configPath => {
   try {
     await initConfig(configPath || '.mftrc.json');
-    const dirPath = path.resolve(FSUtils.resolveHome(getConfig('source')));
-    const tree = await mdFileTree(dirPath, getConfig('linkPrefix'));
+    // const dirPath = path.resolve(FSUtils.resolveHome(getConfig('source')));
+    const tree = ReactDOMServer.renderToStaticMarkup(DirectoryTree, { tree });
+    // await mdFileTree(dirPath, getConfig('linkPrefix'));
     const outputPath = path.resolve(FSUtils.resolveHome(getConfig('output')));
     await FSUtils.writeFilePromise(outputPath, tree);
   } catch (error) {
