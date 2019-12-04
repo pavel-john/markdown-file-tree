@@ -51,8 +51,7 @@ const configSchema = {
     parse: parseValidNonnegativeInteger,
   },
   rootFileName: {
-    doc: 'Each directory including source root can have a root file. ' +
-      'Directory name is linked to this root file if it exists. Directory name is not a link otherwise.',
+    doc: 'The root file name. Directory roots shall have the same name as the directory itself.',
     default: 'Home.md',
     parse: parseValidString,
   },

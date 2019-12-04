@@ -1,6 +1,6 @@
 # Markdown File Tree
 
-Generate file-tree in markdown, including links to particular file. 
+Generate file-tree in markdown, including links to particular file.
 
 Intended to help with TOC (table of centents) in a sidebar of Github wiki pages such as `https://github.com/<user>/<repository>.wiki`, see more at [Documenting your project with wikis](https://help.github.com/en/github/building-a-strong-community/documenting-your-project-with-wikis). Github wiki `Pages` menu displays only top-level directory files. Markdown File Tree traverses directory structure, creates multi-level tree and saves it to a file, by default `_Sidebar.md` which is recognised by Github and placed to the sidebar right under the default menu.
 
@@ -12,7 +12,7 @@ Follow these instructions to [configure](#configuration) and [run](#install_run)
 
 ### Install/Run
 
-Install as dev-dependency to your 
+Install as dev-dependency to your
 ```
 npm install --save-dev markdown-file-tree
 ```
@@ -43,7 +43,7 @@ Configuration values are as follows:
   - **Type:** non-negative integer
   - **Default value:** `Number.MAX_SAFE_INTEGER`
 - `rootFileName`
-  - Each directory including source root can have a root file. Directory name is linked to this root file if it exists. Directory name is not a link otherwise.
+  - The root file name. Directory roots shall have the same name as the directory itself.
   - **Type:** string
   - **Default value:** `'Home.md'`
 - `source`
