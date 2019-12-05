@@ -23,7 +23,7 @@ export const statPromise = filePath => new Promise(
 
 export const trimExtension = fileName => {
   const dotSplit = fileName.split('.');
-  return dotSplit.length > 0
+  return dotSplit.length > 1
     ? dotSplit.slice(0, -1).join('.')
     : fileName;
 };

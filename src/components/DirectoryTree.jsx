@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { getConfig } from '../config';
 import * as FSUtils from '../fsUtils';
 import Directory from './Directory';
+import File from './File';
 
 const RootDirectory = ({ tree }) => (
-  <li>
+  <div>
     {
       tree.hasRootMd
         ? (<a href={FSUtils.trimExtension(getConfig('rootFileName'))}>{tree.rootName}</a>)
@@ -13,9 +14,9 @@ const RootDirectory = ({ tree }) => (
     }
     <ul>
       {tree.childDirs.map((childDir, index) => <Directory key={index} tree={childDir} depth={1} />)}
-      {tree.childFiles.map((childFile, index) => <li key={index}><a href={childFile}>{childFile}</a></li>)}
+      {tree.childFiles.map((childFile, index) => <File key={index} fileName={childFile} />)}
     </ul>
-  </li>
+  </div>
 );
 
 RootDirectory.propTypes = {

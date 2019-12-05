@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import path from 'path';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { initConfig, getConfig } from './config';
 import * as FSUtils from './fsUtils';
@@ -74,19 +75,21 @@ const mdFileTree = async (dirPath, linkPrefix, depth = 0) => {
     return;
   }));
 
-  return (tree.hasRootMd || tree.childDirs.length + tree.childFiles.length > 0)
+  return tree;
+  /*return (tree.hasRootMd || tree.childDirs.length + tree.childFiles.length > 0)
     ? formatTree(tree, linkPrefix, depth)
     : null;
+    */
 };
 
 const run = async configPath => {
   try {
     await initConfig(configPath || '.mftrc.json');
-    // const dirPath = path.resolve(FSUtils.resolveHome(getConfig('source')));
-    const tree = ReactDOMServer.renderToStaticMarkup(DirectoryTree, { tree });
-    // await mdFileTree(dirPath, getConfig('linkPrefix'));
+    const dirPath = path.resolve(FSUtils.resolveHome(getConfig('source')));
+    const tree = await mdFileTree(dirPath, getConfig('linkPrefix'));
+    const treeHtml = ReactDOMServer.renderToStaticMarkup(<DirectoryTree tree={tree} />);
     const outputPath = path.resolve(FSUtils.resolveHome(getConfig('output')));
-    await FSUtils.writeFilePromise(outputPath, tree);
+    await FSUtils.writeFilePromise(outputPath, treeHtml);
   } catch (error) {
     console.log(error);
   }

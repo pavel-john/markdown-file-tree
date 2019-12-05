@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import File from './File';
 
 const Directory = ({ tree, depth }) => (
   <li>
@@ -9,8 +10,13 @@ const Directory = ({ tree, depth }) => (
         : (<>{tree.rootName}</>)
     }
     <ul>
-      {tree.childDirs.map((childDir, index) => <Directory key={index} tree={childDir} depth={depth + 1} />)}
-      {tree.childFiles.map((childFile, index) => <li key={index}><a href={childFile}>{childFile}</a></li>)}
+      {tree.childDirs.map((childDir, index) => {
+        const hasChildren = childDir.childDirs.length + childDir.childFiles.length > 0;
+        return hasChildren
+          ? <Directory key={index} tree={childDir} depth={depth + 1} />
+          : <File key={index} fileName={childDir.rootName} />;
+      })}
+      {tree.childFiles.map((childFile, index) => <File key={index} fileName={childFile} />)}
     </ul>
   </li>
 );
