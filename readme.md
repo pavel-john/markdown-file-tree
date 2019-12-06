@@ -12,18 +12,16 @@ Follow these instructions to [configure](#configuration) and [run](#install_run)
 
 ### Install/Run
 
-Install as dev-dependency to your
+Install globally:
 ```
-npm install --save-dev markdown-file-tree
-```
-
-Run with [npx](https://www.npmjs.com/package/npx)
-
-```
-npx markdown-file-tree [configPath]
+npm install -g markdown-file-tree
 ```
 
-
+Run with path to your config file as optional parameter:
+```
+markdown-file-tree [configPath]
+```
+The `configPath` is `.mftrc.json` in local directory by default. If it is not found, default values are used.
 
 ### Configuration
 Configuration file is a `JSON` file, by default `.mftrc.json` in the current directory. Path to configuration can be specified by optional command argument.
