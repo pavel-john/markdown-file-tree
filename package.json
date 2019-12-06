@@ -1,6 +1,6 @@
 {
   "name": "markdown-file-tree",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generate file-tree in markdown, e.g. (`_Sidebar.md`) for Github wiki, including links to files.",
   "main": "dist/index.js",
   "repository": {
