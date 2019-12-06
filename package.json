@@ -1,6 +1,6 @@
 {
   "name": "markdown-file-tree",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Generate file-tree in markdown, e.g. (`_Sidebar.md`) for Github wiki, including links to files.",
   "main": "dist/index.js",
   "repository": {
@@ -38,11 +38,17 @@
     "@babel/core": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
     "eslint": "^6.7.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-import-resolver-node": "^0.3.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.17.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.4"
+    "@babel/runtime": "^7.7.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   }
 }
