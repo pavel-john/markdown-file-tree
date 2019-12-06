@@ -21,13 +21,6 @@ const parseValidString = value => {
   return value;
 };
 
-const parseValidBoolean = value => {
-  if (typeof (value) !== 'boolean') {
-    throw new Error('Is not a boolean.');
-  }
-  return value;
-};
-
 const configSchema = {
   exclude: {
     doc: 'What paths shall be excluded (exclude is preferred to include). Array of JavaScript RegEx strings.',
@@ -64,16 +57,6 @@ const configSchema = {
     doc: 'Output file.',
     default: '_Sidebar.md',
     parse: parseValidString,
-  },
-  linkPrefix: {
-    doc: 'All links are relative addresses to source root directory. This adds a prefix to each link, which may be handy when source is not ".".',
-    default: '.',
-    parse: parseValidString,
-  },
-  trimExtension: {
-    doc: 'Whether file extension should be trimmed (in both links and titles).',
-    default: true,
-    parse: parseValidBoolean,
   },
 };
 

@@ -9,10 +9,10 @@ const RootDirectory = ({ tree }) => (
   <div>
     {
       tree.hasRootMd
-        ? (<a href={FSUtils.trimExtension(getConfig('rootFileName'))}>{tree.rootName}</a>)
+        ? (<a href={FSUtils.trimExtension(getConfig('rootFileName'))}>{getConfig('rootFileName')}</a>)
         : (<>{tree.rootName}</>)
     }
-    <ul>
+    <ul style={{ listStyleType: 'none', padding: 0 }}>
       {tree.childDirs.map((childDir, index) => <Directory key={index} tree={childDir} depth={1} />)}
       {tree.childFiles.map((childFile, index) => <File key={index} fileName={childFile} />)}
     </ul>
