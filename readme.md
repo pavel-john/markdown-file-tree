@@ -4,6 +4,8 @@ Generate file-tree of markdown files in **GitHub wiki sidebar**.
 
 Intended to help with TOC (table of contents) in a sidebar of Github wiki pages such as `https://github.com/<user>/<repository>/wiki`, see more at [Documenting your project with wikis](https://help.github.com/en/github/building-a-strong-community/documenting-your-project-with-wikis). Github wiki `Pages` menu displays only single-level directory files. Markdown File Tree traverses directory structure, creates multi-level tree in HTML and saves it to a file, by default `_Sidebar.md` which is recognised by Github and placed to the sidebar right under the default menu.
 
+Example from this repo https://github.com/pavel-john/markdown-file-tree/wiki
+
 ![Sidebar](readme_media/Sidebar.png)
 
 ## Getting started
