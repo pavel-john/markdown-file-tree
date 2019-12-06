@@ -2,10 +2,10 @@
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import DirectoryTree from './components/DirectoryTree';
 import { initConfig, getConfig } from './config';
 import * as FSUtils from './fsUtils';
 
-import DirectoryTree from './components/DirectoryTree';
 
 const mdFileTree = async (dirPath, linkPrefix, depth = 0) => {
   if (depth > getConfig('maxDepth')) {
