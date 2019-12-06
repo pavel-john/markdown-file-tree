@@ -28,14 +28,19 @@ The `configPath` is `.mftrc.json` in local directory by default. If it is not fo
 ## Features / Tips / HOWTOs
 
 ### Directory Main Files
-When you use the same name for directory and file: `.../<name>/<name>.md`, the item representing directory is clickable and the file is ommited from the list below the directory.
+When you use the same name for directory and file: `.../<name>/<name>.md`, the item representing directory in the tree is a link to the file and the file is ommited from the directory subtree.
 
-If the only `md` file in the directory is named after it, the directory appears as file in effect and you can use it for associating resources like images ther.
+If the only `md` file in the directory is named like that, the directory looks like file in effect. You can use it for associating resources like images transparently, e.g.
+
+- `myName`
+  - `myName.md`
+  - `image1UsedInMyName.png`
+  - `image2UsedInMyName.png`
 
 ### No Collapsing
-Wiki is not single-page-app so when you expand a node representing a folder and then navigate to another `md` file from sidebar, everything is re-loaded and collapsed again.
-
-It's easy to search the sidebar using `ctrl`+`f` fulltext search in browser. You'd loose this functionality because of collapsing your tree.
+Collapsing Directiories is not supported, why?
+1. Wiki is not single-page-app so when you expand a node representing a folder and then navigate to another `md` file from sidebar, everything is re-loaded and collapsed again.
+2. It's easy to search the sidebar using `ctrl`+`f` fulltext search in browser. You'd loose this functionality because of collapsing your tree.
 
 ### Absolute Paths Only
 GitHub wiki transforms the nested structure into a flat one. Every `md` file gets address `https://github.com/<user>/<repository>/wiki/<file-name>` and is stripped of the `.md` extension. As a side-effect, relative references work in root only, which is kinda stupid. You can either use path relative to the root
